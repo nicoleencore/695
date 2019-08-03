@@ -1,0 +1,61 @@
+---
+title: '695'
+author: "Mengtian Guo"
+date: "August 3, 2019"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+### Data Description
+```{r, echo=FALSE}
+x=5
+````
+Inline code will be included here `x=5`.
+
+*italized*
+**bold**
+
+
+
+# "Income" dataset exercise
+
+## Research question
+I wanted to find out whether and how occupation and industry predict pay. The hypotheses is that occupation and industry predict pay.
+
+## Data cleaning
+```{r, echo=FALSE}
+d=read.csv("C:/Users/Nicole Guo/Downloads/income.csv")
+
+d=na.omit(d)
+str(d)
+```
+
+
+## Analysis
+I will run three multiple regressions, on all pay, male pay, and female pay.
+```{r}
+d$Occupation=as.numeric(d$Occupation)
+d$Industry=as.numeric(d$Industry)
+str(d)
+
+Allresults=lm(All_workers~Occupation+Industry, data=d)
+summary(Allresults)
+
+Mresults=lm(M_workers~Occupation+Industry, data=d)
+summary(Mresults)
+
+Fresults=lm(F_workers~Occupation+Industry, data=d)
+summary(Fresults)
+```
+
+## Evaluation
+As the p-value is larger than 0.05 for both variables in all three models, I conclude that neither occupation or industry predicts pay, in none of the following models: all, male-only and female-only.
+
+## Conclusion
+None of the models/hypotheses is good.
